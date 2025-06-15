@@ -23,10 +23,11 @@ void loop() {
   int valorSensor = analogRead(pinSensorAgua);
   Serial.print("Nivel de agua: ");
   Serial.println(valorSensor);
+  delay(1000); // Espera 1 segundo entre lecturas
  
   unsigned long tiempoActual = millis();
  
-  if (valorSensor > 200) {
+  if (valorSensor > 250) {
     digitalWrite(ledRojo, HIGH);
     digitalWrite(ledVerde, LOW);
  
