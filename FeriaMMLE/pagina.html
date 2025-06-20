@@ -5,6 +5,23 @@
     <title>Datos Lecturas</title>
 </head>
 <body>
+    <nav>
+        <div style="text-align: center; margin-top: 20px;">
+    <a href="/">
+        <button style="
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #289ca7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;">
+            Volver al Inicio
+        </button>
+    </a>
+</div>
+    </nav>
     <h1>Últimas lecturas</h1>
     <table border="1" cellpadding="5" cellspacing="0">
         <thead>
@@ -26,5 +43,41 @@
             {% endfor %}
         </tbody>
     </table>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f7fb;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: uppercase;
+        }
+
+    </style>
 </body>
 </html>

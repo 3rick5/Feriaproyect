@@ -14,7 +14,7 @@ def conectar_base_datos():
         conexion = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Yisus",
+            password="estudiante",
             database="patito"
         )
         if conexion.is_connected():
@@ -27,17 +27,17 @@ def conectar_base_datos():
 # --- Función para conectar al Arduino ---
 def conectar_arduino():
     puertos = [p.device for p in serial.tools.list_ports.comports()]
-    if 'COM8' not in puertos:
-        print("[ERROR] COM8 no está disponible. Verificá la conexión USB.")
+    if 'COM4' not in puertos:
+        print("[ERROR] COM4 no está disponible. Verificá la conexión USB.")
         return None
     try:
-        print("[INFO] Conectando a COM8...")
-        arduino = serial.Serial('COM8', 9600, timeout=1)
+        print("[INFO] Conectando a COM4...")
+        arduino = serial.Serial('COM4', 9600, timeout=1)
         time.sleep(2)  # Espera para que Arduino se reinicie
-        print("[OK] Conectado a COM8.")
+        print("[OK] Conectado a COM4.")
         return arduino
     except Exception as e:
-        print(f"[ERROR] No se pudo abrir COM8: {e}")
+        print(f"[ERROR] No se pudo abrir COM4: {e}")
         return None
 
 # --- Función que corre en hilo separado para leer datos y guardar en BD ---
@@ -61,7 +61,7 @@ def leer_datos_loop():
             if arduino.in_waiting > 0:
                 linea = arduino.readline().decode('utf-8', errors='ignore').strip()
                 if linea:
-                    print(f"[DATOS] {linea}")
+                    print(f"[DATOS]  {linea}")
                     try:
                         consulta = "INSERT INTO lecturas (valor) VALUES (%s)"
                         cursor.execute(consulta, (linea,))
@@ -84,12 +84,12 @@ def obtener_datos():
         conexion = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Yisus",
+            password="estudiante",
             database="patito"
         )
         if conexion.is_connected():
             cursor = conexion.cursor()
-            cursor.execute("SELECT valor, fecha FROM lecturas ORDER BY id DESC LIMIT 10")
+            cursor.execute("SELECT valor, fecha FROM lecturas ORDER BY id DESC LIMIT 20")
             datos = cursor.fetchall()
             cursor.close()
             return datos
@@ -102,9 +102,15 @@ def obtener_datos():
 
 @app.route("/")
 def pagina_principal():
+    return render_template("index.html")
+@app.route("/datos")
+def index():
     datos = obtener_datos()
     print(datos)  # Para debug en consola
     return render_template("pagina.html", datos=datos)
+@app.route("/calc")
+def calculos():
+    return render_template("")
 
 if __name__ == "__main__":
     # Crear y arrancar hilo para lectura Arduino
