@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+    <div id="welcome">
+    <h1>AquaSaver</h1>
+<div class="drop-container">
+  <div class="drop"></div>
+</div>
+</div>
     <header>
         <h1>Proyecto de Recolección de Agua de Lluvia</h1>
         <p>Una iniciativa sostenible para aprovechar los recursos naturales</p>
@@ -19,6 +25,7 @@
             <li><a href="#beneficios">Beneficios</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li><a href="/datos">ver datos</a> </li>
+            <li><a href="/calc">Calulos de litros</Calulos></a> </li>
         </ul>
     </nav>
 
@@ -53,24 +60,156 @@
         </section>
     </main>
     <style>
-      body {
+/* Pantalla de bienvenida */
+#welcome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0077cc;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  z-index: 9999;
+  animation: fadeOut 3s ease-in-out forwards;
+  animation-delay: 4s; /* Espera 1s antes de empezar a desaparecer */
+}
+
+/* Animación de desvanecimiento */
+@keyframes fadeOut {
+  0%   { opacity: 1; }
+  80%  { opacity: 0; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+body {
+  overflow: hidden;
+  background: rgb(25,35,125);
+}
+
+div.drop-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  height: 200px;
+  width: 200px;
+}
+
+
+div.drop {
+  position: absolute;
+  top: -25%;
+  width: 100%;
+  height: 100%;
+  border-radius: 100% 5% 100% 100%;
+  transform: rotate(-45deg);
+  margin: 0px;
+  background: deepskyblue;
+  animation: drip 4s forwards;
+}
+
+#welcome h1 {
+  color: white;
+  position: absolute;
+  font-size: 2.5em;
+  height: 1em;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  margin: auto;
+  text-align: center;
+  opacity: 0;
+  animation: appear 2s 3.5s forwards; /* ⏱ Se muestra después de 4.5 segundos */
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+div.drop-container:before,
+div.drop-container:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 55%;
+  right: 50%;
+  transform: translate(50%) rotateX(75deg);
+  border-radius: 100%;
+  opacity: 0;
+  width: 75%;
+  height: 75%;
+  border: 5px solid skyblue;
+  animation: dripple 2s ease-out 1s;
+}
+
+div.drop-container:after {
+  animation: dripple 2s ease-out 1.7s;
+}
+
+@keyframes drip {
+  45% {
+    top: 0;
+    border-radius: 100% 5% 100% 100%;
+    transform: rotate(-45deg);
+  }
+  100% {
+    top: 0;
+    transform: rotate(0deg);
+    border-radius: 100%;
+  }
+}
+
+@keyframes dripple {
+  0% {
+    width: 150px;
+    height: 150px;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    top: -20%;
+    opacity: 0;
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+}
+body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f0f9ff;
+    background-color: #c7e9ff;
     color: #333;
 }
 
 header {
-    background-color: #0077cc;
+    background-color: #4aa4e4;
     color: white;
     text-align: center;
     padding: 20px;
 }
 
 nav {
-    background-color: #005fa3;
+    background-color: #2780c0;
     padding: 10px;
     text-align: center;
 }
@@ -99,8 +238,8 @@ section {
 }
 
 footer {
-    background-color: #0077cc;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 15px;
     position: relative;
@@ -108,11 +247,110 @@ footer {
     width: 100%;
 }
 
+@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+
+.inner-header {
+  height:65vh;
+  width:100%;
+  margin: 0;
+  padding: 0;
+}
+
+.flex { /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-9px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+
+.content {
+  position:relative;
+  height:20vh;
+  text-align:center;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 770px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+  .content {
+    height:100vh;
+  }
+}
     </style>
 
+
+
+<!--Waves Container-->
+<div>
+<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+<defs>
+<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+</defs>
+<g class="parallax">
+<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+</g>
+</svg>
+</div>
+<!--Waves end-->
+
+</div>
+<!--Header ends-->
+
+<!--Content starts-->
+<div class="content flex">
+</div>
+<!--Content ends-->
     <footer>
         <p>&copy; 2025 Proyecto Agua de Lluvia. Todos los derechos reservados.</p>
     </footer>
+
 </body>
 </html>
 

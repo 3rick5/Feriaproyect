@@ -110,7 +110,7 @@ def index():
     return render_template("pagina.html", datos=datos)
 @app.route("/calc")
 def calculos():
-    return render_template("")
+    return render_template("calculo.html")
 
 if __name__ == "__main__":
     # Crear y arrancar hilo para lectura Arduino
