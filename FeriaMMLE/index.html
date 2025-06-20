@@ -84,6 +84,9 @@
   80%  { opacity: 0; }
   100% { opacity: 0; visibility: hidden; }
 }
+#welcome-active {
+  overflow: hidden;
+}
 
 body {
   overflow: hidden;
@@ -350,7 +353,14 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
     <footer>
         <p>&copy; 2025 Proyecto Agua de Lluvia. Todos los derechos reservados.</p>
     </footer>
-
+<script>
+  // Espera 5 segundos (la duración total de la animación)
+  setTimeout(() => {
+    document.body.style.overflow = "auto"; // ✅ Vuelve a activar el scroll
+    const welcome = document.getElementById("welcome");
+    if (welcome) welcome.style.display = "none"; // Oculta el div por completo
+  }, 5000); // ajustá el tiempo si tu animación dura más o menos
+</script>
 </body>
 </html>
 
