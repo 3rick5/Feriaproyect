@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto de Recolección de Agua de Lluvia</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
 </head>
 <body>
     <div id="welcome">
@@ -90,7 +90,7 @@
 
 body {
   overflow: hidden;
-  background: rgb(25,35,125);
+
 }
 
 div.drop-container {
@@ -191,64 +191,6 @@ div.drop-container:after {
   }
 }
 
-
-* {
-  box-sizing: border-box;
-}
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #c7e9ff;
-    color: #333;
-}
-
-header {
-    background-color: #4aa4e4;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-
-nav {
-    background-color: #2780c0;
-    padding: 10px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-main {
-    padding: 20px;
-}
-
-section {
-    margin-bottom: 30px;
-}
-
-footer {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    padding: 15px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
 
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
 
